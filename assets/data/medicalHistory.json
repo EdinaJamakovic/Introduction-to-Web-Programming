@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "date": "2025-03-10",
+      "time": "14:30",
+      "doctor": "Dr. John Smith",
+      "serviceDone": "Teeth Cleaning",
+      "diagnosis": "Mild gingivitis",
+      "prognosis": "Requires regular cleaning",
+      "notes": "Recommend using antiseptic mouthwash."
+    },
+    {
+      "id": 2,
+      "date": "2025-03-12",
+      "time": "10:00",
+      "doctor": "Dr. Emily Brown",
+      "serviceDone": "Braces Adjustment",
+      "diagnosis": "Progressing well",
+      "prognosis": "Next check-up in 4 weeks",
+      "notes": "Slight pressure increase expected."
+    },
+    {
+      "id": 3,
+      "date": "2025-03-15",
+      "time": "09:45",
+      "doctor": "Dr. Michael Lee",
+      "serviceDone": "Cavity Filling",
+      "diagnosis": "Small cavity in molar",
+      "prognosis": "No further issues expected",
+      "notes": "Avoid hard foods for 24 hours."
+    }
+  ]
+  

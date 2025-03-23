@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "date": "2023-10-15",
+        "time": "10:00 AM",
+        "doctor": "Dr. Smith"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "date": "2023-10-16",
+        "time": "11:00 AM",
+        "doctor": "Dr. Johnson"
+    },
+    {
+        "id": 3,
+        "name": "Alice Johnson",
+        "date": "2023-10-17",
+        "time": "09:30 AM",
+        "doctor": "Dr. Brown"
+    },
+    {
+        "id": 4,
+        "name": "Bob Williams",
+        "date": "2023-10-18",
+        "time": "02:00 PM",
+        "doctor": "Dr. Davis"
+    },
+    {
+        "id": 5,
+        "name": "Charlie Brown",
+        "date": "2023-10-19",
+        "time": "01:00 PM",
+        "doctor": "Dr. Wilson"
+    }
+]

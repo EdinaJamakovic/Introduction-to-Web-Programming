@@ -1,4 +1,96 @@
 <!DOCTYPE html>
-<html>
-<h1>HELLO</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pearl Stomatology</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="./assets/css/spapp.css" />
+    <link rel="stylesheet" href="./assets/css/project1v2.css" type="text/css">
+    <link id="theme" rel="stylesheet" href="./assets/css/lightTheme.css" type="text/css">
+</head>
+<body>
+    <div id="eventDelDiv" class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-sm">
+                <a class="navbar-brand" href="#landingPage">Pearl</a>
+                <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#viewDoctors">Our Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#login"><button type="button" class="btn btn-primary btn-inverted">Login/Sign Up</button></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <section id="pageContent">
+            <main id="spapp" role="main">
+                <section id="landingPage" data-load="landingPage.html"></section>
+                <section id="gallery" data-load="gallery.html"></section>
+                <section id="appointments" data-load="appointments.html"></section>
+                <section id="services" data-load="services.html"></section>
+                <section id="login" data-load="login.html"></section>
+                <section id="signup" data-load="signup.html"></section>
+                <section id="viewProfile" data-load="viewProfile.html"></section>
+                <section id="bookAppointment" data-load="bookAppointment.html"></section>
+                <section id="doctor" data-load="doctor.html"></section>
+                <section id="viewDoctors" data-load="viewDoctors.html"></section>
+            </main>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex justify-content-between" id="my-footer">
+                        <div class="p-3">
+                            <h3>Contact Us</h3>
+                            <p>123 Pearl St</p>
+                            <p>City, State, Zip</p>
+                            <p>Phone: (123)-840 3987</p>
+                        </div>
+                        <div class="p-3">
+                            <h3>Follow Us</h3>
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a><i class="fab fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a><i class="fab fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer> 
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src=https://cdn.datatables.net/2.0.3/js/dataTables.min.js></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="./assets/js/jquery.spapp.js"></script>
+    <script src="./assets/js/jquery.spapp.min.js"></script>
+    <script src="./assets/js/custom.js"></script> 
+    <script src="./assets/js/services/dataTableService.js"></script>
+    <script src="./assets/js/services/doctorAppointmentService.js"></script>
+    <script src="./assets/js/services/modalAService.js"></script>
+    <script src="./assets/js/services/servicesService.js"></script>
+    
+</body>
 </html>

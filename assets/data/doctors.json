@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Dr. John Doe",
+        "specialization": "Cardiologist",
+        "email": "john.doe@hospital.com",
+        "phone": "(123) 456-7890",
+        "image": "https://via.placeholder.com/300x200"
+    },
+    {
+        "name": "Dr. Jane Smith",
+        "specialization": "Dermatologist",
+        "email": "jane.smith@hospital.com",
+        "phone": "(987) 654-3210",
+        "image": "https://via.placeholder.com/300x200"
+    }
+]
