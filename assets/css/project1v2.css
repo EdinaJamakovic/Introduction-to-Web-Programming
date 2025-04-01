@@ -527,6 +527,7 @@ ul {
     line-height: 1;
 }
 
-#patientsTable_info {
-    width: 100% !important;
+#patientsTable {
+    width: 100%;
+    white-space: nowrap;
 }
