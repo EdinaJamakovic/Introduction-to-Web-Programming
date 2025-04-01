@@ -1,0 +1,113 @@
+/* General */
+* {
+    color: #181443;
+}
+
+body.inverted {
+    background-color: #F2F1FE;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white;
+}
+
+.nav-link {
+    color: #181443;
+}
+
+.nav-link:hover {
+    background-color: #F2F1FE !important;
+    color: #5D4FFF !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #5D4FFF;
+}
+
+.btn-primary a {
+    color: white !important;
+}
+
+.btn-primary:hover {
+    color: #181443 !important;
+    background-color: #F2F1FE !important;
+}
+
+.btn-primary:disabled {
+    background-color: #5D4FFF;
+    opacity: 0.5; /* Reduced opacity */
+}
+
+.my-button {
+    background-color: white;
+}
+
+/* Text Colors */
+.sideP,
+.muted-text {
+    color: #625D7E;
+}
+
+.darkBlueText {
+    color: #181443;
+}
+
+.lightBlueText {
+    color: #5D4FFF;
+}
+
+/* Containers */
+.my-container,
+fieldset {
+    background-color: white;
+}
+
+/* Icons */
+.my-mini-icon {
+    color: white;
+    background-color: #5D4FFF;
+}
+
+/* Cards */
+.card:hover h5 {
+    color: #5D4FFF;
+}
+
+/* Carousel */
+.carousel-control-next .carousel-control-next-icon i,
+.carousel-control-prev .carousel-control-prev-icon i {
+    color: #5D4FFF;
+}
+
+/* Footer */
+footer {
+    background-color: #F2F1FE;
+}
+
+footer.inverted {
+    background-color: white;
+}
+
+footer ul i {
+    color: #5D4FFF;
+    background-color: white;
+}
+
+/* Forms */
+.form-control:hover {
+    border-color: #617eff;
+}
+
+/* Contact Us */
+.contact-us-container i {
+    color: black;
+}
+
+/* Error and Success Messages */
+#error-message, 
+#success-message {
+    color: #181443;
+}
+

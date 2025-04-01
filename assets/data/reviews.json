@@ -1,0 +1,4 @@
+[
+    { "reviewer": "John Doe", "rating": 5, "comment": "Excellent doctor!" },
+    { "reviewer": "Jane Smith", "rating": 4, "comment": "Very good, but the wait was long." }
+]

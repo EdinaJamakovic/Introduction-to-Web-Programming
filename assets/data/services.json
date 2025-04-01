@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "title": "Cosmetic Dentistry",
+        "description": "Enhance your smile with our expert cosmetic dentistry services.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c632dcad2a4e5_cosmetic-dentistry-dentist-webflow-template.svg"
+    },
+    {
+        "id": "2",
+        "title": "Orthodontics",
+        "description": "Straighten your teeth with professional orthodontic care.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c63f898d2a4e6_orthodontics-dentist-webflow-template.svg"
+    },
+    {
+        "id": "3",
+        "title": "Oral Hygiene",
+        "description": "Maintain a healthy smile with our oral hygiene services.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c6328f0d2a4e7_oral-hygiene-dentist-webflow-template.svg"
+    },
+    {
+        "id": "4",
+        "title": "Dental Treatment",
+        "description": "Comprehensive dental treatments tailored to your needs.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c636c7bd2a4e8_dental-treatment-dentist-webflow-template.svg"
+    },
+    {
+        "id": "5",
+        "title": "Dental Surgery",
+        "description": "Advanced surgical procedures for dental health.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c63d40dd2a4e9_dental-surgery-dentist-webflow-template.svg"
+    },
+    {
+        "id": "6",
+        "title": "Dental Implants",
+        "description": "Replace missing teeth with durable dental implants.",
+        "image": "https://assets.website-files.com/60e4a233ef2c63414dd2a3fd/60e4a233ef2c633177d2a4ea_dental-implants-dentist-webflow-template.svg"
+    }
+]

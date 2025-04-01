@@ -1,0 +1,27 @@
+[
+    {
+        "date": "2025-03-17",
+        "time": "09:00 AM",
+        "doctor": "Dr. Sarah Johnson"
+    },
+    {
+        "date": "2025-03-17",
+        "time": "11:00 AM",
+        "doctor": "Dr. Michael Brown"
+    },
+    {
+        "date": "2025-03-18",
+        "time": "02:00 PM",
+        "doctor": "Dr. Emily Davis"
+    },
+    {
+        "date": "2025-03-19",
+        "time": "10:00 AM",
+        "doctor": "Dr. James Wilson"
+    },
+    {
+        "date": "2025-03-19",
+        "time": "03:00 PM",
+        "doctor": "Dr. Anna Martinez"
+    }
+]

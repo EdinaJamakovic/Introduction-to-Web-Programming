@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <h2>Book New Appointment</h2>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h4>Available Appointments</h4>
+        </div>
+        <div class="card-body">
+            <table id="availableAppointmentsTable" class="table table-striped w-100">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Doctor</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="serviceSelectionModal" tabindex="-1" aria-labelledby="serviceSelectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="serviceSelectionModalLabel">Select Service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="serviceSelectionForm">
+                    <div class="form-group">
+                        <label for="service">Choose Service</label>
+                        <select class="form-control" id="service">
+                            <option value="General Consultation">General Consultation</option>
+                            <option value="Specialist Visit">Specialist Visit</option>
+                            <option value="Routine Checkup">Routine Checkup</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="handleBooking()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    dataTableService.loadAvailableAppointments();
+</script>
