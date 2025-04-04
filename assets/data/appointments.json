@@ -3,12 +3,16 @@
         "id": 1,
         "date": "2025-03-15",
         "time": "10:30 AM",
+        "service": "service",
         "doctor": "Dr. John Doe"
+        
     },
     {
         "id": 2,
         "date": "2025-03-20",
         "time": "02:00 PM",
+        "service": "service",
         "doctor": "Dr. Emily Smith"
+        
     }
 ]

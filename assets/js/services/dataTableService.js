@@ -9,6 +9,7 @@ let dataTableService = {
                 { data: "id" },
                 { data: "date" },
                 { data: "time" },
+                { data: "service"},
                 { data: "doctor" },
                 {
                     data: null,
@@ -60,6 +61,7 @@ let dataTableService = {
                 { data: "name" },
                 { data: "date" },
                 { data: "time" },
+                { data: "service" },
                 {
                     data: null,
                     render: function (data, type, row) {

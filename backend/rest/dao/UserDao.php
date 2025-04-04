@@ -16,7 +16,7 @@ class UserDao extends BaseDao{
     public function getAllDoctors(){
         $stmt->connection->prepare("SELECT * FROM users WHERE role = 'doctor'");
         $stmt->execute();
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 }
 
