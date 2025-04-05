@@ -1,4 +1,6 @@
 <?php
+require_once 'BaseDao.php';
+
 class MedicalHistoryDao extends BaseDao{
     public function __construct(){
         parent::__construct('medical_history');
