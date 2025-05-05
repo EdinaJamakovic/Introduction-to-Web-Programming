@@ -1,0 +1,24 @@
+[05-May-2025 00:33:20 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 9
+[05-May-2025 00:33:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/vendor/autoload.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php:9
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 9
+[05-May-2025 00:33:26 Europe/Berlin] PHP Warning:  require(C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 9
+[05-May-2025 00:33:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/vendor/autoload.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php:9
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 9
+[05-May-2025 00:35:42 Europe/Berlin] PHP Warning:  require_once(./backend/rest/dao/AppointmentDao.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 3
+[05-May-2025 00:35:42 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required './backend/rest/dao/AppointmentDao.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php:3
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(12): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 3
+[05-May-2025 00:36:55 Europe/Berlin] Table: appointments
+[05-May-2025 00:36:55 Europe/Berlin] Rows found: 23
+[05-May-2025 02:10:54 Europe/Berlin] PHP Warning:  require_once(../dao/AppointmentDao.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 3
+[05-May-2025 02:10:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../dao/AppointmentDao.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php:3
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(12): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 3

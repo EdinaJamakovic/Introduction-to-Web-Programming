@@ -9,9 +9,9 @@ class ReviewDao extends BaseDao{
     public function getByDoctorId($id){
         $stmt = $this->connection->prepare(
             'SELECT * FROM reviews r 
-            JOIN medical_history mh on r.history_id = mh.history_id
-            JOIN appointments a on mh.appointment_id = a.appointment_id
-            JOIN users u on a.patient_id = u.user_id
+            JOIN medical_history mh on r.history_id = mh.id
+            JOIN appointments a on mh.appointment_id = a.id
+            JOIN users u on a.patient_id = u.id
             WHERE a.doctor_id = :id'
         );
         $stmt->bindParam(':id', $id);

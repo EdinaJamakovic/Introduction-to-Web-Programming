@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `appointments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `appointments` (
-  `appointment_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `patient_id` int DEFAULT NULL,
   `doctor_id` int DEFAULT NULL,
   `service_id` int DEFAULT NULL,
@@ -31,14 +31,14 @@ CREATE TABLE `appointments` (
   `time` time NOT NULL,
   `status` enum('free','scheduled','completed','unavailable') NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`appointment_id`),
+  PRIMARY KEY (`id`),
   KEY `patient_id` (`patient_id`),
   KEY `doctor_id` (`doctor_id`),
   KEY `service_id` (`service_id`),
-  CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (21,1,6,1,'2025-04-05','09:00:00','scheduled','2025-04-02 07:33:42'),(22,4,7,2,'2025-04-06','10:00:00','scheduled','2025-04-02 07:33:42'),(23,3,8,3,'2025-04-07','11:00:00','scheduled','2025-04-02 07:33:42'),(24,4,9,4,'2025-04-08','12:00:00','scheduled','2025-04-02 07:33:42'),(25,5,10,5,'2025-04-09','13:00:00','scheduled','2025-04-02 07:33:42'),(26,NULL,6,6,'2025-04-10','14:00:00','free','2025-04-02 07:33:42'),(27,NULL,7,7,'2025-04-11','15:00:00','free','2025-04-02 07:33:42'),(28,3,8,8,'2025-04-12','16:00:00','completed','2025-04-02 07:33:42'),(29,4,9,9,'2025-04-13','17:00:00','completed','2025-04-02 07:33:42'),(30,5,10,10,'2025-04-14','18:00:00','completed','2025-04-02 07:33:42');
+INSERT INTO `appointments` VALUES (21,1,6,1,'2025-04-05','09:00:00','scheduled','2025-04-02 07:33:42'),(22,4,7,2,'2025-04-06','10:00:00','scheduled','2025-04-02 07:33:42'),(23,3,8,3,'2025-04-07','11:00:00','scheduled','2025-04-02 07:33:42'),(24,4,9,4,'2025-04-08','12:00:00','scheduled','2025-04-02 07:33:42'),(25,5,10,5,'2025-04-09','13:00:00','scheduled','2025-04-02 07:33:42'),(26,NULL,6,6,'2025-04-10','14:00:00','free','2025-04-02 07:33:42'),(27,NULL,7,7,'2025-04-11','15:00:00','free','2025-04-02 07:33:42'),(28,3,8,8,'2025-04-12','16:00:00','completed','2025-04-02 07:33:42'),(29,4,9,9,'2025-04-13','17:00:00','completed','2025-04-02 07:33:42'),(30,5,10,10,'2025-04-14','18:00:00','completed','2025-04-02 07:33:42'),(31,1,1,1,'2025-05-01','10:00:00','scheduled','2025-04-29 11:57:09'),(32,1,1,1,'2025-05-01','10:00:00','scheduled','2025-04-29 11:58:48'),(33,1,1,1,'2025-05-01','10:00:00','scheduled','2025-04-29 12:03:14');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,16 +59,16 @@ DROP TABLE IF EXISTS `medical_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medical_history` (
-  `history_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `appointment_id` int NOT NULL,
   `diagnosis` text,
   `prescription` text,
   `prognosis` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`history_id`),
+  PRIMARY KEY (`id`),
   KEY `medical_history_ibfk_appointment` (`appointment_id`),
-  CONSTRAINT `medical_history_ibfk_appointment` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`appointment_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `medical_history_ibfk_appointment` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,14 +89,14 @@ DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
-  `review_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `history_id` int NOT NULL,
   `rating` tinyint NOT NULL,
   `comment` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`review_id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `unique_history_review` (`history_id`),
-  CONSTRAINT `reviews_ibfk_history` FOREIGN KEY (`history_id`) REFERENCES `medical_history` (`history_id`) ON DELETE CASCADE,
+  CONSTRAINT `reviews_ibfk_history` FOREIGN KEY (`history_id`) REFERENCES `medical_history` (`id`) ON DELETE CASCADE,
   CONSTRAINT `reviews_chk_1` CHECK ((`rating` between 1 and 5))
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -119,13 +119,13 @@ DROP TABLE IF EXISTS `services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `services` (
-  `service_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text,
   `image_url` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `services` (
 
 LOCK TABLES `services` WRITE;
 /*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,'Teeth Cleaning','Basic cleaning to remove plaque and tartar.','cleaning.jpg','2025-04-02 07:29:03'),(2,'Cavity Filling','Fill cavities with composite resin or amalgam.','filling.jpg','2025-04-02 07:29:03'),(3,'Tooth Extraction','Removal of severely damaged teeth.','extraction.jpg','2025-04-02 07:29:03'),(4,'Braces Installation','Orthodontic treatment for misaligned teeth.','braces.jpg','2025-04-02 07:29:03'),(5,'Root Canal','Treatment for infected tooth pulp.','root_canal.jpg','2025-04-02 07:29:03'),(6,'Dental Implants','Surgical placement of artificial teeth.','implants.jpg','2025-04-02 07:29:03'),(7,'Teeth Whitening','Cosmetic procedure to whiten teeth.','whitening.jpg','2025-04-02 07:29:03'),(8,'Gum Disease Treatment','Treatment for periodontitis and gingivitis.','gum_disease.jpg','2025-04-02 07:29:03'),(9,'Pediatric Checkup','Routine dental examination for children.','pediatric.jpg','2025-04-02 07:29:03'),(10,'Veneers','Thin porcelain covers for discolored or damaged teeth.','veneers.jpg','2025-04-02 07:29:03');
+INSERT INTO `services` VALUES (1,'Teeth Cleaning','Updated Description','cleaning.jpg','2025-04-02 07:29:03'),(2,'Cavity Filling','Fill cavities with composite resin or amalgam.','filling.jpg','2025-04-02 07:29:03'),(3,'Tooth Extraction','Removal of severely damaged teeth.','extraction.jpg','2025-04-02 07:29:03'),(4,'Braces Installation','Orthodontic treatment for misaligned teeth.','braces.jpg','2025-04-02 07:29:03'),(5,'Root Canal','Treatment for infected tooth pulp.','root_canal.jpg','2025-04-02 07:29:03'),(6,'Dental Implants','Surgical placement of artificial teeth.','implants.jpg','2025-04-02 07:29:03'),(7,'Teeth Whitening','Cosmetic procedure to whiten teeth.','whitening.jpg','2025-04-02 07:29:03'),(8,'Gum Disease Treatment','Treatment for periodontitis and gingivitis.','gum_disease.jpg','2025-04-02 07:29:03'),(9,'Pediatric Checkup','Routine dental examination for children.','pediatric.jpg','2025-04-02 07:29:03'),(10,'Veneers','Thin porcelain covers for discolored or damaged teeth.','veneers.jpg','2025-04-02 07:29:03'),(11,'Test Service','Test Description','test.jpg','2025-04-29 11:57:09'),(12,'Test Service','Test Description','test.jpg','2025-04-29 11:58:48'),(13,'Test Service','Test Description','test.jpg','2025-04-29 12:03:14');
 /*!40000 ALTER TABLE `services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -155,9 +155,9 @@ CREATE TABLE `users` (
   `role` enum('patient','doctor') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'patient',
   `specialization` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'edina','jamakovic','edina.jamakovic@stu.ibu.edu.ba','1234',NULL,'patient',NULL,'2025-03-26 09:13:24'),(3,'John','Doe','john.doe@example.com','hashedpass1','1234567890','patient',NULL,'2025-04-02 07:28:59'),(4,'Jane','Smith','jane.smith@example.com','hashedpass2','2345678901','patient',NULL,'2025-04-02 07:28:59'),(5,'Alice','Brown','alice.brown@example.com','hashedpass3','3456789012','patient',NULL,'2025-04-02 07:28:59'),(6,'Bob','White','bob.white@example.com','hashedpass4','4567890123','patient',NULL,'2025-04-02 07:28:59'),(7,'Emma','Davis','emma.davis@example.com','hashedpass5','5678901234','patient',NULL,'2025-04-02 07:28:59'),(8,'Dr. Mark','Taylor','mark.taylor@example.com','hashedpass6','6789012345','doctor','Orthodontist','2025-04-02 07:28:59'),(9,'Dr. Olivia','Wilson','olivia.wilson@example.com','hashedpass7','7890123456','doctor','Pediatric Dentist','2025-04-02 07:28:59'),(10,'Dr. Henry','Moore','henry.moore@example.com','hashedpass8','8901234567','doctor','Endodontist','2025-04-02 07:28:59'),(11,'Dr. Ava','Miller','ava.miller@example.com','hashedpass9','9012345678','doctor','Periodontist','2025-04-02 07:28:59'),(12,'Dr. Lucas','Anderson','lucas.anderson@example.com','hashedpass10','0123456789','doctor','Prosthodontist','2025-04-02 07:28:59');
+INSERT INTO `users` VALUES (1,'edina','jamakovic','edina.jamakovic@stu.ibu.edu.ba','1234','+1112223333','patient',NULL,'2025-03-26 09:13:24'),(3,'John','Doe','john.doe@example.com','hashedpass1','1234567890','patient',NULL,'2025-04-02 07:28:59'),(4,'Jane','Smith','jane.smith@example.com','hashedpass2','2345678901','patient',NULL,'2025-04-02 07:28:59'),(5,'Alice','Brown','alice.brown@example.com','hashedpass3','3456789012','patient',NULL,'2025-04-02 07:28:59'),(6,'Bob','White','bob.white@example.com','hashedpass4','4567890123','patient',NULL,'2025-04-02 07:28:59'),(7,'Emma','Davis','emma.davis@example.com','hashedpass5','5678901234','patient',NULL,'2025-04-02 07:28:59'),(8,'Dr. Mark','Taylor','mark.taylor@example.com','hashedpass6','6789012345','doctor','Orthodontist','2025-04-02 07:28:59'),(9,'Dr. Olivia','Wilson','olivia.wilson@example.com','hashedpass7','7890123456','doctor','Pediatric Dentist','2025-04-02 07:28:59'),(10,'Dr. Henry','Moore','henry.moore@example.com','hashedpass8','8901234567','doctor','Endodontist','2025-04-02 07:28:59'),(22,'Test','Patient','test.patient@example.com','$2y$10$oJiQO7hk.3qjZxKAWEIWNOTb2IRVA033S75LhO/nfztEUuIGH0ySO','+1234567890','patient',NULL,'2025-04-29 12:03:14'),(23,'Test','Doctor','test.doctor@example.com','$2y$10$lQ602fs73dTqwTkGdLnPhOYpRuaaw43pv2GFXqQns3xJX.src1VWK','+1987654321','doctor','General Dentistry','2025-04-29 12:03:14');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-04 23:35:30
+-- Dump completed on 2025-04-29 14:09:29
