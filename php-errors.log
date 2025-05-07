@@ -1,0 +1,5 @@
+[05-May-2025 00:25:53 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming/backend/routes/UserRoutes.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\index.php on line 28
+[05-May-2025 00:25:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming/backend/routes/UserRoutes.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\index.php:28
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\index.php on line 28

@@ -1,8 +1,8 @@
 <?php
-require_once "./dao/UserDao.php";
+require_once "./services/AppointmentService.php";
 
-$dao = new UserDao();
-print_r($dao->getAll());
+$service = new AppointmentService();
+print_r($dao->getByPatientId(3));
 
 
 ?>

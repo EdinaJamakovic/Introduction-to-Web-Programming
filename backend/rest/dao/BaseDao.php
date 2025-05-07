@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once __DIR__ . '/../config.php'; 
 
 class BaseDao{
     protected $table;
@@ -13,7 +13,12 @@ class BaseDao{
     public function getAll() {
         $stmt = $this->connection->prepare("SELECT * FROM " . $this->table);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $result = $stmt->fetchAll();
+        
+        // Debug output
+        error_log("Table: " . $this->table); 
+        error_log("Rows found: " . count($result));
+        return $result;
     }
     
     public function getById($id) {

@@ -1,15 +1,15 @@
 let dataTableService = {
-    loadAppointments: function () {
+    loadAppointments: function (patientId) {
         $('#appointmentsTable').DataTable({
             ajax: {
-                url: "./assets/data/appointments.json",
+                url: `../backend/appointments/patient/${patientId}`,
                 dataSrc: ""
             },
             columns: [
-                { data: "id" },
+                { data: "appointment_id" },
                 { data: "date" },
                 { data: "time" },
-                { data: "service"},
+                { data: "title"},
                 { data: "doctor" },
                 {
                     data: null,
@@ -29,7 +29,7 @@ let dataTableService = {
     loadAvailableAppointments: function () {
         $('#availableAppointmentsTable').DataTable({
             ajax: {
-                url: "./assets/data/availableAppointments.json",
+                url: `../backend/appointments/free`,
                 dataSrc: ""
             },
             columns: [
@@ -50,18 +50,23 @@ let dataTableService = {
         });
     },
 
-    loadPatients: function () {
+    loadPatients: function (doctorId, status) {
         $('#patientsTable').DataTable({
             ajax: {
-                url: "./assets/data/doctorAppointments.json",
+                url: `../backend/appointments/doctor/${doctorId}/${status}`,
                 dataSrc: ""
             },
             columns: [
-                { data: "id" },
-                { data: "name" },
+                { data: "appointment_id" },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return row.first_name + " " + row.last_name;
+                    }
+                },
                 { data: "date" },
                 { data: "time" },
-                { data: "service" },
+                { data: "title" },
                 {
                     data: null,
                     render: function (data, type, row) {
@@ -81,18 +86,26 @@ let dataTableService = {
 };
 
 let medicalHistory = {
-    loadMedicalHistory: function () {
+    loadMedicalHistory: function (patientId) {
         $('#medicalHistoryTable').DataTable({
             ajax: {
-                url: './assets/data/medicalHistory.json',
+                url: `../backend/medical-history/patient/${patientId}`,
                 dataSrc: ''
             },
             columns: [
                 { data: 'id' },
-                { data: 'date' },
-                { data: 'time' },
-                { data: 'doctor' },
-                { data: 'serviceDone' },
+                { data: 'appointment_date' }, 
+                { data: 'appointment_time' },
+                {
+                    data: 'doctor_first_name',
+                    render: function (data, type, row) {
+                        if (data && row.doctor_last_name) {
+                            return `${data} ${row.doctor_last_name}`;
+                        }
+                        return 'N/A';
+                    }
+                },
+                { data: 'service_title' },
                 {
                     data: null,
                     render: function (data, type, row) {
@@ -111,10 +124,10 @@ let medicalHistory = {
 };
 
 function viewDetails(id) {
-    $.get(`./assets/data/medicalHistory.json/`, function (data) {
-        $('#diagnosisDetails').text(data.diagnosis);
+    $.get(`../backend/medical-history/${id}`, function (data) {
         $('#prognosisDetails').text(data.prognosis);
-        $('#notesDetails').text(data.notes);
+        $('#diagnosisDetails').text(data.diagnosis);
+        $('#prescriptionDetails').text(data.prescription);
         modalService.openModal('viewDetailsModal');
     });
 }
