@@ -11,7 +11,8 @@
  * )
  */
 Flight::route('GET /users', function() {
-    $service = new UserService();
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    $service = new AuthService();
     Flight::json($service->getAll());
 });
 
@@ -33,8 +34,21 @@ Flight::route('GET /users', function() {
  * )
  */
 Flight::route('GET /users/@id', function($id) {
-    $service = new UserService();
-    Flight::json($service->getById($id));
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR, Roles::PATIENT);
+    $currentUser = Flight::get('user');
+    $targetUser = (new AuthService())->getById($id);
+    
+    // Users can view their own profile
+    if ($currentUser['id'] == $id) {
+        return Flight::json($targetUser);
+    }
+    
+    // Admin can view any profile
+    if ($currentUser['role'] === Roles::ADMIN) {
+        return Flight::json($targetUser);
+    }
+        
+    Flight::halt(403, "Unauthorized");
 });
 
 /**
@@ -59,40 +73,13 @@ Flight::route('GET /users/@id', function($id) {
  * )
  */
 Flight::route('POST /users', function() {
-    $service = new UserService();
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    $service = new AuthService();
     $data = Flight::request()->data->getData();
     try {
         Flight::json($service->create($data));
     } catch (Exception $e) {
         Flight::halt(400, $e->getMessage());
-    }
-});
-
-/**
- * @OA\Post(
- *     path="/users/login",
- *     summary="User login",
- *     tags={"Users"},
- *     @OA\RequestBody(
- *         required=true,
- *         @OA\JsonContent(
- *             type="object",
- *             required={"email", "password"},
- *             @OA\Property(property="email", type="string", format="email"),
- *             @OA\Property(property="password", type="string", format="password")
- *         )
- *     ),
- *     @OA\Response(response="200", description="Login successful"),
- *     @OA\Response(response="401", description="Invalid credentials")
- * )
- */
-Flight::route('POST /users/login', function() {
-    $service = new UserService();
-    $data = Flight::request()->data->getData();
-    try {
-        Flight::json($service->login($data['email'], $data['password']));
-    } catch (Exception $e) {
-        Flight::halt(401, $e->getMessage());
     }
 });
 
@@ -125,8 +112,19 @@ Flight::route('POST /users/login', function() {
  * )
  */
 Flight::route('PUT /users/@id', function($id) {
-    $service = new UserService();
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
+    $currentUser = Flight::get('user');
     $data = Flight::request()->data->getData();
+    
+    if ($currentUser['id'] != $id && $currentUser['role'] !== Roles::ADMIN) {
+        Flight::halt(403, "You can only update your own profile");
+    }
+    
+    if (isset($data['role']) && $currentUser['role'] !== Roles::ADMIN) {
+        unset($data['role']);
+    }
+    
+    $service = new AuthService();
     try {
         Flight::json($service->update($id, $data));
     } catch (Exception $e) {
@@ -152,7 +150,8 @@ Flight::route('PUT /users/@id', function($id) {
  * )
  */
 Flight::route('DELETE /users/@id', function($id) {
-    $service = new UserService();
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
+    $service = new AuthService();
     Flight::json($service->delete($id));
 });
 ?>

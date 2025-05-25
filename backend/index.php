@@ -13,22 +13,50 @@ require_once __DIR__ . '/rest/services/AppointmentService.php';
 require_once __DIR__ . '/rest/services/MedicalHistoryService.php';
 require_once __DIR__ . '/rest/services/ReviewService.php';
 require_once __DIR__ . '/rest/services/ServicesService.php';
-require_once __DIR__ . '/rest/services/UserService.php';
+require_once __DIR__ . '/rest/services/AuthService.php';
+require "middleware/AuthMiddleware.php";
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 Flight::register('appointmentService', 'AppointmentService');
 Flight::register('medicalHistoryService', 'MedicalHistoryService');
 Flight::register('reviewService', 'ReviewService');
 Flight::register('servicesService', 'ServicesService');
-Flight::register('userService', 'UserService');
+Flight::register('authService', 'AuthService');
+Flight::register('auth_middleware', "AuthMiddleware");
 
 require_once __DIR__ . '/rest/routes/AppointmentRoutes.php';
 require_once __DIR__ . '/rest/routes/MedicalHistoryRoutes.php';
 require_once __DIR__ . '/rest/routes/ReviewRoutes.php';
 require_once __DIR__ . '/rest/routes/ServiceRoutes.php';
 require_once __DIR__ . '/rest/routes/UserRoutes.php';
+require_once __DIR__ . '/rest/routes/AuthRoutes.php';
 
-Flight::route('/', function() {
-    echo 'Dental Clinic API';
+Flight::route('/*', function() {
+   if(
+       strpos(Flight::request()->url, '/auth/login') === 0 ||
+       strpos(Flight::request()->url, '/auth/register') === 0
+   ) {
+       return TRUE;
+   } else {
+       try {
+           $token = Flight::request()->getHeader("Authentication");
+           if(!$token)
+               Flight::halt(401, "Missing authentication header");
+
+
+           $decoded_token = JWT::decode($token, new Key(Config::JWT_SECRET(), 'HS256'));
+
+
+           Flight::set('user', $decoded_token->user);
+           Flight::set('jwt_token', $token);
+           return TRUE;
+       } catch (\Exception $e) {
+           Flight::halt(401, $e->getMessage());
+       }
+   }
 });
+
 
 Flight::start();

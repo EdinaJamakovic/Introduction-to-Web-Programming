@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../data/roles.php';
 /**
  * @OA\Get(
  *     path="/appointments",
@@ -9,6 +10,7 @@
  * )
  */
 Flight::route('GET /appointments', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->getAll());
 });
@@ -29,6 +31,7 @@ Flight::route('GET /appointments', function() {
  * )
  */
 Flight::route('GET /appointments/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->getById($id));
 });
@@ -49,6 +52,7 @@ Flight::route('GET /appointments/@id', function($id) {
  * )
  */
 Flight::route('GET /appointments/patient/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::PATIENT);
     $service = new AppointmentService();
     Flight::json($service->getByPatientId($id));
 });
@@ -75,8 +79,40 @@ Flight::route('GET /appointments/patient/@id', function($id) {
  * )
  */
 Flight::route('GET /appointments/doctor/@id/@status', function($id, $status) {
+    Flight::auth_middleware()->authorizeRole(Roles::DOCTOR, Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->getByDoctorId($id, $status));
+});
+
+/**
+ * @OA\Get(
+ *     path="/appointments/doctor/{id}/free",
+ *     summary="Get free appointments for a specific doctor",
+ *     tags={"Appointments"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="List of available (free) appointments for the doctor"
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="Doctor not found"
+ *     ),
+ *     @OA\Response(
+ *         response="403",
+ *         description="Unauthorized access"
+ *     )
+ * )
+ */
+Flight::route('GET /appointments/doctor/@id/free', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::PATIENT, Roles::ADMIN, Roles::DOCTOR);
+    $service = new AppointmentService();
+    Flight::json($service->getByDoctorId($id, 'free'));
 });
 
 /**
@@ -100,6 +136,7 @@ Flight::route('GET /appointments/doctor/@id/@status', function($id, $status) {
  * )
  */
 Flight::route('POST /appointments', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     $data = Flight::request()->data->getData();
     Flight::json($service->create($data));
@@ -128,6 +165,7 @@ Flight::route('POST /appointments', function() {
  * )
  */
 Flight::route('PUT /appointments/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR, Roles::PATIENT);
     $service = new AppointmentService();
     $data = Flight::request()->data->getData();
     Flight::json($service->update($id, $data));
@@ -149,6 +187,7 @@ Flight::route('PUT /appointments/@id', function($id) {
  * )
  */
 Flight::route('DELETE /appointments/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->delete($id));
 });
@@ -163,7 +202,21 @@ Flight::route('DELETE /appointments/@id', function($id) {
  * )
  */
 Flight::route('GET /appointments/free', function() {
+    $auth = new AuthMiddleware();
+    
+    // First verify token
+    if (!$auth->verifyToken()) {
+        return;
+    }
+    
+    // Then check for allowed roles
+    $auth->authorizeRoles([Roles::PATIENT, Roles::ADMIN]);
+    
+    // Proceed with the request
     $service = new AppointmentService();
-    Flight::json($service->getFreeAppointments());
+    Flight::json([
+        'success' => true,
+        'data' => $service->getFreeAppointments()
+    ]);
 });
 ?>
