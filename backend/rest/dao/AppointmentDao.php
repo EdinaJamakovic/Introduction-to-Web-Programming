@@ -44,12 +44,15 @@ class AppointmentDao extends BaseDao{
 
     public function getAllFreeAppointments(){
         $stmt = $this->connection->prepare(
-            "SELECT a.date, a.time, CONCAT(d.first_name, ' ', d.last_name) as doctor FROM appointments a 
+            "SELECT a.id, a.date, a.time, 
+                    CONCAT(d.first_name, ' ', d.last_name) as doctor,
+                    d.specialization as specialty 
+            FROM appointments a 
             JOIN users d ON a.doctor_id = d.id 
-            WHERE status = 'free'"
+            WHERE a.status = 'free'"
         );
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

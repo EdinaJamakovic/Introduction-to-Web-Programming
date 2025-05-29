@@ -9,6 +9,7 @@
  * )
  */
 Flight::route('GET /services', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
     $service = new ServicesService();
     Flight::json($service->getAll());
 });
@@ -29,6 +30,7 @@ Flight::route('GET /services', function() {
  * )
  */
 Flight::route('GET /services/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
     $service = new ServicesService();
     Flight::json($service->getById($id));
 });
@@ -51,6 +53,7 @@ Flight::route('GET /services/@id', function($id) {
  * )
  */
 Flight::route('POST /services', function() {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
     $service = new ServicesService();
     $data = Flight::request()->data->getData();
     Flight::json($service->create($data));
@@ -80,6 +83,7 @@ Flight::route('POST /services', function() {
  * )
  */
 Flight::route('PUT /services/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
     $service = new ServicesService();
     $data = Flight::request()->data->getData();
     Flight::json($service->update($id, $data));
@@ -101,6 +105,7 @@ Flight::route('PUT /services/@id', function($id) {
  * )
  */
 Flight::route('DELETE /services/@id', function($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
     $service = new ServicesService();
     Flight::json($service->delete($id));
 });

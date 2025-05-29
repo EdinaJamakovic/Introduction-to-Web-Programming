@@ -16,7 +16,7 @@
  * )
  *
  * @OA\Server(
- *     url="http://localhost/EdinaJamakovic/Introduction-to-Web-Programming/backend/public/v1",
+ *     url="http://localhost/EdinaJamakovic/Introduction-to-Web-Programming/backend",
  *     description="Dev Server"
  * )
  *

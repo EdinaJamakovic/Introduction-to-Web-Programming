@@ -22,3 +22,112 @@ Stack trace:
 #0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(12): require_once()
 #1 {main}
   thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 3
+[14-May-2025 13:45:29 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:30 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:41 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:41 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:54 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:45:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:06 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:06 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:41 Europe/Berlin] PHP Warning:  require_once(C:\xampp\php\pear): Failed to open stream: Permission denied in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 13:56:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php:93
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(30): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AuthRoutes.php on line 93
+[14-May-2025 14:15:34 Europe/Berlin] Table: users
+[14-May-2025 14:15:34 Europe/Berlin] Rows found: 11
+[21-May-2025 13:57:29 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/rest/services/UserService.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 17
+[21-May-2025 13:57:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend/rest/services/UserService.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php:17
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php on line 17
+[25-May-2025 22:54:35 Europe/Berlin] PHP Warning:  require_once(../../data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:54:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../../data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:54:35 Europe/Berlin] PHP Warning:  require_once(../../data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:54:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../../data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:54:42 Europe/Berlin] PHP Warning:  require_once(../../data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:54:42 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../../data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:32 Europe/Berlin] PHP Warning:  require_once(backend/data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'backend/data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:32 Europe/Berlin] PHP Warning:  require_once(backend/data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'backend/data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:37 Europe/Berlin] PHP Warning:  require_once(backend/data/roles.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 22:55:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'backend/data/roles.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php:2
+Stack trace:
+#0 C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\index.php(29): require_once()
+#1 {main}
+  thrown in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\routes\AppointmentRoutes.php on line 2
+[25-May-2025 23:27:58 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:27:58 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:38:32 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:38:32 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:38:32 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:38:32 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:38:36 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:38:36 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:38:37 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:38:37 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:38:39 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:38:39 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:45:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:45:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:45:43 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:45:43 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8
+[25-May-2025 23:45:51 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'DomainException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 7
+[25-May-2025 23:45:51 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'UnexpectedValueException' has no effect in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\middleware\AuthMiddleWare.php on line 8

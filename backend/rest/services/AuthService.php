@@ -1,21 +1,28 @@
 <?php
 require_once "BaseService.php";
-require_once "./rest/dao/UserDao.php";
+require_once "./rest/dao/AuthDao.php";
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
-class UserService extends BaseService {
+class AuthService extends BaseService {
 
     public function __construct(){
-        $dao = new UserDao();
+        $dao = new AuthDao();
         parent::__construct($dao);
     }
 
-    public function create($data){
+    public function register($data){
         $errors = $this->validateInput($data, true);
 
         $data['password_hash'] = password_hash($data['password_hash'], PASSWORD_DEFAULT);
 
     if (!empty($errors)) {
         throw new Exception("Validation failed: " . implode(", ", $errors));
+    }
+
+    $email_exists = $this->dao->getByUserEmail($data['email']);
+    if($email_exists){
+        throw new Exception('Email already registered.');
     }
 
     try {
@@ -57,14 +64,27 @@ class UserService extends BaseService {
         }
     
         try {
-            $user = $this->dao->getByEmail($email);
+            $user = $this->dao->getByUserEmail($email);
     
             if (!$user || !password_verify($password, $user['password_hash'])) {
                 throw new Exception("Invalid email or password.");
             }
-         
-            return $user;
-    
+            
+            $jwt_payload = [
+            'user' => $user,
+            'iat' => time(),
+            'exp' => time() + (60 * 60 * 24)
+            ];
+
+
+            $token = JWT::encode(
+                $jwt_payload,
+                Config::JWT_SECRET(),
+                'HS256'
+            );
+
+            return ['data' => array_merge($user, ['token' => $token])];
+            
         } catch (Exception $e) {
             throw new Exception("Login failed: " . $e->getMessage());
         }
