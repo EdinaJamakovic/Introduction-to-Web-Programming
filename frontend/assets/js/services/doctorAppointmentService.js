@@ -1,58 +1,20 @@
-let doctorAppointmentService = {
-    openEditTreatmentModal: function(patientId) {
-        const patientData = {
-            prescription: 'Example prescription for patient ' + patientId,
-            diagnosis: 'Diagnosis for patient ' + patientId,
-            prognosis: 'Prognosis for patient ' + patientId,
-            notes: 'Some additional notes for patient ' + patientId
-        };
-
-        document.getElementById('prescription').value = patientData.prescription;
-        document.getElementById('diagnosis').value = patientData.diagnosis;
-        document.getElementById('prognosis').value = patientData.prognosis;
-        document.getElementById('notes').value = patientData.notes;
-
-        modalService.openModal('editTreatmentModal');
-    },
-
-    closeEditTreatmentModal: function() {
-        modalService.closeModal('editTreatmentModal');
-    },
-
-    handleEditTreatmentFormSubmit: function(event) {
-        event.preventDefault();
-
-        const prescription = document.getElementById('prescription').value;
-        const diagnosis = document.getElementById('diagnosis').value;
-        const prognosis = document.getElementById('prognosis').value;
-        const notes = document.getElementById('notes').value;
-
-        console.log('Updated treatment data:', { prescription, diagnosis, prognosis, notes });
-        this.closeEditTreatmentModal();
-    },
-
-    cancelAppointment: function(patientId) {
-        const confirmCancel = confirm(`Are you sure you want to cancel the appointment for patient ${patientId}?`);
-        if (confirmCancel) {
-            console.log(`Appointment for patient ${patientId} has been canceled.`);
-        }
-    }
-};
-
+/**
+ * Doctor Appointment Service - Handles doctor-related UI and API interactions
+ */
 let DoctorService = {
 
     createDoctorCard(doctor) {
         return `
             <div class="col">
                 <div class="card h-100 d-flex flex-column">
-                    <img class="card-img-top" src="${doctor.image}" alt="${doctor.name}">
+                    <img class="card-img-top" src="˘${doctor.photo_url}" alt="${doctor.first_name} ${doctor.last_name}">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${doctor.name}</h5>
-                        <p class="card-text"><strong>Specialization:</strong> ${doctor.specialization}</p>
+                        <h5 class="card-title">Dr. ${doctor.first_name} ${doctor.last_name}</h5>
+                        <p class="card-text"><strong>Specialization:</strong> ${doctor.specialization || 'General Dentistry'}</p>
                         <p class="card-text"><strong>Contact:</strong> ${doctor.email}, ${doctor.phone}</p>
                         <div class="mt-auto">
                             <a href="#bookAppointment"><button class="btn btn-primary w-100 mt-2">Book Appointment</button></a>
-                            <button class="btn btn-success w-100 mt-2" onclick="DoctorService.openReviewModal()">View Reviews</button>
+                            <button class="btn btn-success w-100 mt-2" onclick="DoctorService.getDoctorReviews(${doctor.id})">View Reviews</button>
                         </div>
                     </div>
                 </div>
@@ -60,79 +22,179 @@ let DoctorService = {
         `;
     },
 
+    //doc to page
     renderDoctors(doctors) {
-        doctorsGrid = document.getElementById('doctorsGrid');
+        const doctorsGrid = document.getElementById('doctorsGrid');
+        if (!doctorsGrid) return;
+        
+        doctorsGrid.innerHTML = '';
         doctors.forEach(doctor => {
-            const cardHTML = this.createDoctorCard(doctor);
-            doctorsGrid.innerHTML += cardHTML;
+            doctorsGrid.innerHTML += this.createDoctorCard(doctor);
         });
-    }, 
-    
-    async loadDoctors(filename) {
-        try {
-            const response = await fetch(filename);
-            const doctors = await response.json();
-            this.renderDoctors(doctors);
-        } catch (error) {
-            console.error('Error loading doctors:', error);
-        }
     },
 
-
-    openReviewModal() {
-        const reviews = [
-            { reviewer: "John Doe", rating: 5, comment: "Excellent doctor!" },
-            { reviewer: "Jane Smith", rating: 4, comment: "Very good, but the wait was long." },
-            { reviewer: "Emily Johnson", rating: 5, comment: "Highly recommend! Very professional." }
-        ];
+    //doc
+    getDoctors() {
     
-        const reviewContent = reviews.map(review => {
-            return `
-                <div class="review">
-                    <p><strong>${review.reviewer}</strong> - Rating: ${review.rating}</p>
-                    <p>${review.comment}</p>
+    
+    $.ajax({
+        url: Constants.PROJECT_BASE_URL + 'users/doctors',
+        type: 'GET',
+        dataType: 'json',
+        beforeSend: (xhr) => {
+            const token = localStorage.getItem("user_token");
+                if (token) {
+                    xhr.setRequestHeader("Authentication", token);
+                }
+        },
+        success: (data) => {
+            this.renderDoctors(data);
+        },
+        error: (xhr) => {
+            console.error('Error fetching doctors:', xhr.responseText);
+            $('#doctorsGrid').html(`
+                <div class="col-12 text-center text-danger">
+                    Failed to load doctors. Please try again later.
                 </div>
-            `;
-        }).join('');
-    
-        document.getElementById('reviewContent').innerHTML = reviewContent;
-    
-        // Open the modal (using Bootstrap Modal)
-        const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
-        reviewModal.show();
-    },
-    
-
-    
-    createReviewCard(review){
-        return `
-            <div class="review">
-                <p><strong>${review.reviewer}</strong> - Rating: ${review.rating}</p>
-                <p>${review.comment}</p>
-            </div>
-        `;
-    },
-
-    renderReviews(reviews){
-        reviews.forEach(review => {
-            reviewContent = document.getElementById('reviewContent');
-            reviews.forEach(review => {
-                reviewContent.innerHTML += this.createReviewCard(review);
-            })
-        })
-    },
-
-    async loadReviews(filename) {
-        try {
-            const response = await fetch(filename);
-            const reviews = await response.json();
-            this.renderReviews(reviews);
-        } catch (error) {
-            console.error('Error loading reviews:', error);
+            `);
         }
-    }
+    });
+},
+    
+    //reveiews
+    getDoctorReviews(doctorId) {
+        const token = this.getAuthToken();
+        
+        $.ajax({
+            url: Constants.PROJECT_BASE_URL + `reviews/doctor/${doctorId}`,
+            type: 'GET',
+            dataType: 'json',
+             beforeSend: (xhr) => {
+            const token = localStorage.getItem("user_token");
+                if (token) {
+                    xhr.setRequestHeader("Authentication", token);
+                }
+        },
+            success: (reviews) => {
+                this.displayReviewsModal(reviews);
+            },
+            error: (xhr) => {
+                console.error('Error fetching reviews:', xhr.responseText);
+                let errorMessage = 'Failed to load reviews';
+                
+                $('#reviewContent').html(`
+                    <div class="alert alert-danger">
+                        ${errorMessage}
+                    </div>
+                `);
+                $('#reviewModal').modal('show');
+            }
+        });
+    },
+
+    displayReviewsModal(reviews) {
+        let reviewContent = '';
+        
+        if (!reviews || reviews.length === 0) {
+            reviewContent = '<p class="text-muted">No reviews yet for this doctor.</p>';
+        } else {
+            reviewContent = reviews.map(review => {
+                const patientName = review.first_name ? 
+                    `${review.first_name} ${review.last_name}` : 'Anonymous';
+                const ratingStars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                const reviewDate = new Date(review.created_at).toLocaleDateString();
+                
+                return `
+                    <div class="review mb-3 p-3 border-bottom">
+                        <p><strong>${patientName}</strong> - 
+                           <span class="text-warning">${ratingStars}</span></p>
+                        <p>${review.comment || 'No comment provided'}</p>
+                        <small class="text-muted">${reviewDate}</small>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        $('#reviewContent').html(reviewContent);
+        $('#reviewModal').modal('show');
+    },
 
     
+    //treatment
+    openEditTreatmentModal(patientId) {
+        //update to api
+        const patientData = {
+            prescription: 'Example prescription for patient ' + patientId,
+            diagnosis: 'Diagnosis for patient ' + patientId,
+            prognosis: 'Prognosis for patient ' + patientId,
+            notes: 'Some additional notes for patient ' + patientId
+        };
+
+        $('#prescription').val(patientData.prescription);
+        $('#diagnosis').val(patientData.diagnosis);
+        $('#prognosis').val(patientData.prognosis);
+        $('#notes').val(patientData.notes);
+
+        $('#editTreatmentModal').modal('show');
+    },
+
+    closeEditTreatmentModal() {
+        $('#editTreatmentModal').modal('hide');
+    },
+
+    handleEditTreatmentFormSubmit(event) {
+        event.preventDefault();
+        
+        const treatmentData = {
+            prescription: $('#prescription').val(),
+            diagnosis: $('#diagnosis').val(),
+            prognosis: $('#prognosis').val(),
+            notes: $('#notes').val(),
+            patientId: $('#editTreatmentModal').data('patient-id')
+        };
+
+        //update to api
+        console.log('Updated treatment data:', treatmentData);
+        this.closeEditTreatmentModal();
+        
+        //success message
+        alert('Treatment updated successfully!');
+    },
+
+    
+    //apt
+    cancelAppointment(patientId) {
+        if (!confirm(`Are you sure you want to cancel the appointment for patient ${patientId}?`)) {
+            return;
+        }
+
+        const token = this.getAuthToken();
+        
+        $.ajax({
+            url: `/appointments/${patientId}`,
+            type: 'DELETE',
+            beforeSend: (xhr) => {
+                xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+            },
+            success: () => {
+                alert('Appointment canceled successfully');
+                // Refresh appointments or update UI as needed
+            },
+            error: (xhr) => {
+                console.error('Error canceling appointment:', xhr.responseText);
+                alert('Failed to cancel appointment. Please try again.');
+            }
+        });
+    }
 };
 
-
+// Initialize when page loads
+$(document).ready(function() {
+    // Load doctors when page loads
+    DoctorService.getDoctors();
+    
+    // Set up treatment form submission
+    $('#treatmentForm').on('submit', function(e) {
+        DoctorService.handleEditTreatmentFormSubmit(e);
+    });
+});

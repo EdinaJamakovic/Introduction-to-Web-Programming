@@ -7,24 +7,19 @@
                     <h4>Personal Information</h4>
                 </div>
                 <div class="card-body">
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>Name:</strong> John Smith</li>
-                        <li class="list-group-item"><strong>Age:</strong> 29</li>
-                        <li class="list-group-item"><strong>Email:</strong> john.smith@email.com</li>
-                        <li class="list-group-item"><strong>Phone:</strong> (123) 456-7890</li>
-                        <li class="list-group-item"><strong>Address:</strong> 123 Pearl St, City, State, Zip</li>
+                    <ul class="list-group" id="profileInfo">
+                        <!-- Will be populated by JavaScript -->
                     </ul>
                     <div class="mt-3 text-center">
-                        <a id="editProfileButton" class="btn btn-warning" onclick="modalService.openModal('editProfileModal')">Edit Profile</a>
+                        <button id="editProfileButton" class="btn btn-warning">Edit Profile</button>
                     </div>
                     <div class="mt-3 text-center">
-                        <a id="changePasswordButton" class="btn btn-danger" onclick="modalService.openModal('changePasswordModal')">Change Password</a>
+                        <button id="changePasswordButton" class="btn btn-danger">Change Password</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="mt-4">
         <div class="card">
@@ -40,6 +35,7 @@
                             <th>Time</th>
                             <th>Service</th>
                             <th>Doctor</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -50,113 +46,26 @@
             </div>
         </div>
     </div>
-</div>
 
-<div id="editProfileModal" class="custom-modal d-none">
-    <div class="custom-modal-content">
-        <div class="custom-modal-header">
-            <h5 class="modal-title">Edit Profile</h5>
-            <button type="button" class="close" id="closeEditModalButton">&times;</button>
-        </div>
-        <div class="custom-modal-body">
-            <form id="editProfileForm">
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" value="John">
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" value="Smith">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" value="john.smith@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" class="form-control" id="phone" value="(123) 456-7890">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" value="123 Pearl St, City, State, Zip">
-                </div>
-            </form>
-        </div>
-        <div class="custom-modal-footer">
-            <button type="button" class="btn btn-secondary" id="closeEditModalFooterButton" onclick="modalService.closeModal('editProfileModal')">Close</button>
-            <button type="submit" class="btn btn-primary" form="editProfileForm" onclick="modalService.closeModal('editProfileModal')">Save Changes</button>
-        </div>
-    </div>
-</div>
-
-<div id="changePasswordModal" class="custom-modal d-none">
-    <div class="custom-modal-content">
-        <div class="custom-modal-header">
-            <h5 class="modal-title">Change Password</h5>
-            <button type="button" class="close" onclick="modalService.closeModal('changePasswordModal')">&times;</button>
-        </div>
-        <div class="custom-modal-body">
-            <form id="changePasswordForm">
-                <input type="hidden" id="patientId" value="123">
-                <div class="form-group">
-                    <label for="currentPassword">Current Password</label>
-                    <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" required>
-                </div>
-                <div class="form-group">
-                    <label for="newPassword">New Password</label>
-                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm New Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
-                </div>
-            </form>
-        </div>
-        <div class="custom-modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="modalService.closeModal('changePasswordModal')">Close</button>
-            <button type="button" class="btn btn-primary" onclick="passwordService.changePassword()">Save Changes</button>
-        </div>
-    </div>
-</div>
-
-<div id="cancelAppointmentModalPatient" class="custom-modal d-none">
-    <div class="custom-modal-content">
-        <div class="custom-modal-header">
-            <h5 class="modal-title">Cancel Appointment</h5>
-        </div>
-        <div class="custom-modal-body">
-            <p>Are you sure you want to cancel this appointment?</p>
-            <div class="form-group">
-                <label for="cancelReason">Reason for Cancellation</label>
-                <textarea class="form-control" id="cancelReason" placeholder="Enter reason..." required></textarea>
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>Medical History</h4>
             </div>
-        </div>
-        <div class="custom-modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="modalService.closeModal('cancelAppointmentModalPatient')">Close</button>
-            <button type="button" class="btn btn-danger" id="confirmCancelButton" onclick="modalService.closeModal('cancelAppointmentModalPatient')">Confirm Cancel</button>
-        </div>
-    </div>
-</div>
-
-<div class="mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h4>Medical History</h4>
-        </div>
-        <div class="card-body">
-            <table id="medicalHistoryTable" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Doctor</th>
-                        <th>Service Done</th>
-                        <th>Actions</th>
-                        <th>Review</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="card-body">
+                <table id="medicalHistoryTable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Doctor</th>
+                            <th>Service</th>
+                            <th>Actions</th>
+                            <th>Review</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>

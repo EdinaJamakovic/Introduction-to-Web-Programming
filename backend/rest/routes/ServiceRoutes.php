@@ -9,9 +9,13 @@
  * )
  */
 Flight::route('GET /services', function() {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
-    $service = new ServicesService();
-    Flight::json($service->getAll());
+    try {
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR]);
+        $service = new ServicesService();
+        Flight::json($service->getAll());
+    } catch (Exception $e) {
+        Flight::json(['error' => $e->getMessage()], $e->getCode() ?: 500);
+    }
 });
 
 /**
@@ -30,9 +34,13 @@ Flight::route('GET /services', function() {
  * )
  */
 Flight::route('GET /services/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
-    $service = new ServicesService();
-    Flight::json($service->getById($id));
+    try {
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR]);
+        $service = new ServicesService();
+        Flight::json($service->getById($id));
+    } catch (Exception $e) {
+        Flight::json(['error' => $e->getMessage()], $e->getCode() ?: 500);
+    }
 });
 
 /**
@@ -44,19 +52,26 @@ Flight::route('GET /services/@id', function($id) {
  *         required=true,
  *         @OA\JsonContent(
  *             type="object",
- *             @OA\Property(property="name", type="string"),
- *             @OA\Property(property="description", type="string")
+ *             @OA\Property(property="title", type="string"),
+ *             @OA\Property(property="description", type="string"),
+ *             @OA\Property(property="image_url", type="string")
  *         )
  *     ),
  *     @OA\Response(response="201", description="Service created"),
- *     @OA\Response(response="400", description="Invalid input")
+ *     @OA\Response(response="400", description="Invalid input"),
+ *     @OA\Response(response="403", description="Unauthorized")
  * )
  */
 Flight::route('POST /services', function() {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
-    $service = new ServicesService();
-    $data = Flight::request()->data->getData();
-    Flight::json($service->create($data));
+    try {
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::DOCTOR]);
+        $service = new ServicesService();
+        $data = Flight::request()->data->getData();
+        $result = $service->create($data);
+        Flight::json($result, 201);
+    } catch (Exception $e) {
+        Flight::json(['error' => $e->getMessage()], $e->getCode() ?: 500);
+    }
 });
 
 /**
@@ -74,19 +89,26 @@ Flight::route('POST /services', function() {
  *         required=true,
  *         @OA\JsonContent(
  *             type="object",
- *             @OA\Property(property="name", type="string"),
- *             @OA\Property(property="description", type="string")
+ *             @OA\Property(property="title", type="string"),
+ *             @OA\Property(property="description", type="string"),
+ *             @OA\Property(property="image_url", type="string")
  *         )
  *     ),
  *     @OA\Response(response="200", description="Service updated"),
- *     @OA\Response(response="404", description="Service not found")
+ *     @OA\Response(response="404", description="Service not found"),
+ *     @OA\Response(response="403", description="Unauthorized")
  * )
  */
 Flight::route('PUT /services/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
-    $service = new ServicesService();
-    $data = Flight::request()->data->getData();
-    Flight::json($service->update($id, $data));
+    try {
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::DOCTOR]);
+        $service = new ServicesService();
+        $data = Flight::request()->data->getData();
+        $result = $service->update($id, $data);
+        Flight::json($result);
+    } catch (Exception $e) {
+        Flight::json(['error' => $e->getMessage()], $e->getCode() ?: 500);
+    }
 });
 
 /**
@@ -101,12 +123,17 @@ Flight::route('PUT /services/@id', function($id) {
  *         @OA\Schema(type="integer")
  *     ),
  *     @OA\Response(response="200", description="Service deleted"),
- *     @OA\Response(response="404", description="Service not found")
+ *     @OA\Response(response="404", description="Service not found"),
+ *     @OA\Response(response="403", description="Unauthorized")
  * )
  */
 Flight::route('DELETE /services/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR);
-    $service = new ServicesService();
-    Flight::json($service->delete($id));
+    try {
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::DOCTOR]);
+        $service = new ServicesService();
+        $result = $service->delete($id);
+        Flight::json($result);
+    } catch (Exception $e) {
+        Flight::json(['error' => $e->getMessage()], $e->getCode() ?: 500);
+    }
 });
-?>

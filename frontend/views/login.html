@@ -16,27 +16,3 @@
         <p class="text-center"><a href="#">Forgot password?</a></p>
     </div>
 </div>
-
-<script src="./utils/constants.js"></script>
-<script src="./assets/js/services/user-service.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script src="./utils/utils.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    // Debug: Check for existing token
-    if (localStorage.getItem("user_token")) {
-      console.log("Existing token found:", localStorage.getItem("user_token"));
-    }
-    
-    UserService.init();
-    
-    // Debug form submission
-    $("#login-form").on("submit", function() {
-      console.log("Form submitted with values:", {
-        email: $("#email").val(),
-        password: $("#password").val()
-      });
-    });
-  });
-</script>

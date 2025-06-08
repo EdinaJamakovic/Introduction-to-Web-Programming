@@ -35,8 +35,7 @@
   
 
 <script>
-     DoctorService.loadDoctors("./assets/data/doctors.json");
-</script>
-<script>
-    DoctorService.loadReviews("./assets/data/reviews.json");
+    document.addEventListener('DOMContentLoaded', function() {
+        DoctorService.loadDoctors();
+    });
 </script>

@@ -83,7 +83,7 @@ class AuthService extends BaseService {
                 'HS256'
             );
 
-            return ['data' => array_merge($user, ['token' => $token])];
+            return ['user' => $user,'token' => $token];
             
         } catch (Exception $e) {
             throw new Exception("Login failed: " . $e->getMessage());
@@ -128,6 +128,10 @@ class AuthService extends BaseService {
         }
     
         return $errors;
+    }
+
+    public function getAllDoctors(){
+        return $this->dao->getAllDoctors();
     }
     
     

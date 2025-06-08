@@ -51,7 +51,7 @@ Flight::route('GET /medical-history/@id', function($id) {
  * )
  */
 Flight::route('GET /medical-history/patient/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT);
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::PATIENT]);
     $currentUser = Flight::get('user');
     
     if ($currentUser['role'] === Roles::PATIENT && $currentUser['id'] != $id) {

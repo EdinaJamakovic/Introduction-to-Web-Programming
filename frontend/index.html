@@ -19,18 +19,7 @@
                 <a class="navbar-brand" href="#landingPage">Pearl</a>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
                     <ul class="navbar-nav" id="tabs">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#services">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#viewDoctors">Our Doctors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#login"><button type="button" class="btn btn-primary btn-inverted">Login/Sign Up</button></a>
-                        </li>
+                        <!---to generate dynamically-->
                     </ul>
                 </div>
             </nav>
@@ -38,16 +27,7 @@
 
         <section id="pageContent">
             <main id="spapp" role="main">
-                <section id="landingPage" data-load="landingPage.html"></section>
-                <section id="gallery" data-load="gallery.html"></section>
-                <section id="appointments" data-load="appointments.html"></section>
-                <section id="services" data-load="services.html"></section>
-                <section id="login" data-load="login.html"></section>
-                <section id="signup" data-load="signup.html"></section>
-                <section id="viewProfile" data-load="viewProfile.html"></section>
-                <section id="bookAppointment" data-load="bookAppointment.html"></section>
-                <section id="doctor" data-load="doctor.html"></section>
-                <section id="viewDoctors" data-load="viewDoctors.html"></section>
+                <!---to generate dynamically-->
             </main>
         </section>
 
@@ -81,21 +61,34 @@
     <script src=https://cdn.datatables.net/2.0.3/js/dataTables.min.js></script>
     <script src="./assets/js/jquery.spapp.js"></script>
     <script src="./assets/js/jquery.spapp.min.js"></script>
-    <script src="./assets/js/custom.js"></script> 
 
+    <script src="./utils/constants.js"></script>
+    <script src="./utils/utils.js"></script>
+    <script src="./assets/js/services/profileService.js"></script>
+    <script src="./utils/rest-client.js"></script>
+    
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="./assets/js/services/dataTableService.js"></script>
+    <script src="./assets/js/custom.js"></script> 
+    <script src="./assets/js/services/user-service.js"></script>
+
     <script src="./assets/js/services/doctorAppointmentService.js"></script>
     <script src="./assets/js/services/modalAService.js"></script>
     <script src="./assets/js/services/servicesService.js"></script>
     <script src="./assets/js/services/passwordService.js"></script>
-    <script src="./utils/constants.js"></script>
-    <script src="./utils/utils.js"></script>
-    <script src="./utils/rest-client.js"></script>
-    <script src="./assets/js/services/user-service.js"></script>
+     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            UserService.init();
+        });
+        function redirectProfile(){
+            window.location.hash = "#viewProfile";
+            location.reload();
+        }
+    </script>
+    
 </body>
 </html>
