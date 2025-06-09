@@ -23,6 +23,39 @@ if (!token) return null;
          console.error("Invalid JWT token", e);
          return null;
        }
+    },
+     hasRole: function(requiredRole) {
+        const token = localStorage.getItem("user_token");
+        if (!token) return false;
+        
+        const decoded = this.parseJwt(token);
+        return decoded && decoded.user && decoded.user.role === requiredRole;
+    },
+
+    hasAnyRole: function(requiredRoles) {
+        const token = localStorage.getItem("user_token");
+        if (!token) return false;
+        
+        const decoded = this.parseJwt(token);
+        if (!decoded || !decoded.user || !decoded.user.role) return false;
+        
+        return requiredRoles.includes(decoded.user.role);
+    },
+    getCurrentUser: function() {
+        const token = localStorage.getItem("user_token");
+        if (!token) return null;
+        
+        const decoded = this.parseJwt(token);
+        return decoded ? decoded.user : null;
+    },
+
+    isTokenExpired: function(token) {
+        if (!token) return true;
+        
+        const decoded = this.parseJwt(token);
+        if (!decoded || !decoded.exp) return true;
+        
+        return decoded.exp * 1000 < Date.now();
     }
   };
 })();

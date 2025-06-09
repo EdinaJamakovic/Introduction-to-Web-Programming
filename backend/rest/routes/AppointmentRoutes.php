@@ -17,6 +17,29 @@ Flight::route('GET /appointments', function() {
 
 /**
  * @OA\Get(
+ *     path="/appointments/free",
+ *     summary="Get all available (free) appointments",
+ *     tags={"Appointments"},
+ *     @OA\Response(response="200", description="List of free appointments"),
+ *     @OA\Response(response="500", description="Server error")
+ * )
+ */
+Flight::route('GET /appointments/free', function() {
+   $auth = new AuthMiddleware();
+ 
+    // Then check for allowed roles
+        Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR]);
+
+    // Proceed with the request
+    $service = new AppointmentService();
+    Flight::json([
+        'success' => true,
+        'data' => $service->getFreeAppointments()
+    ]);
+});
+
+/**
+ * @OA\Get(
  *     path="/appointments/{id}",
  *     summary="Get an appointment by ID",
  *     tags={"Appointments"},
@@ -30,7 +53,7 @@ Flight::route('GET /appointments', function() {
  *     @OA\Response(response="404", description="Appointment not found")
  * )
  */
-Flight::route('GET /appointments/@id', function($id) {
+Flight::route('GET /appointments/@id', function($id) { //POZIVA OVU RUTU
     Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->getById($id));
@@ -52,7 +75,7 @@ Flight::route('GET /appointments/@id', function($id) {
  * )
  */
 Flight::route('GET /appointments/patient/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::PATIENT);
+    Flight::auth_middleware()->authorizeRoles([Roles::PATIENT, Roles::ADMIN]);
     $service = new AppointmentService();
     Flight::json($service->getByPatientId($id));
 });
@@ -165,7 +188,7 @@ Flight::route('POST /appointments', function() {
  * )
  */
 Flight::route('PUT /appointments/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::DOCTOR, Roles::PATIENT);
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::DOCTOR, Roles::PATIENT]);
     $service = new AppointmentService();
     $data = Flight::request()->data->getData();
     Flight::json($service->update($id, $data));
@@ -190,33 +213,5 @@ Flight::route('DELETE /appointments/@id', function($id) {
     Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $service = new AppointmentService();
     Flight::json($service->delete($id));
-});
-
-/**
- * @OA\Get(
- *     path="/appointments/free",
- *     summary="Get all available (free) appointments",
- *     tags={"Appointments"},
- *     @OA\Response(response="200", description="List of free appointments"),
- *     @OA\Response(response="500", description="Server error")
- * )
- */
-Flight::route('GET /appointments/free', function() {
-    $auth = new AuthMiddleware();
-    
-    // First verify token
-    if (!$auth->verifyToken()) {
-        return;
-    }
-    
-    // Then check for allowed roles
-    $auth->authorizeRoles([Roles::PATIENT, Roles::ADMIN]);
-    
-    // Proceed with the request
-    $service = new AppointmentService();
-    Flight::json([
-        'success' => true,
-        'data' => $service->getFreeAppointments()
-    ]);
 });
 ?>

@@ -16,6 +16,22 @@ Flight::route('GET /users', function() {
     Flight::json($service->getAll());
 });
 
+// Add to UserRoutes.php
+/**
+ * @OA\Get(
+ *     path="/users/doctors",
+ *     summary="Get all doctors",
+ *     tags={"Users"},
+ *     @OA\Response(response="200", description="List of all doctors"),
+ *     @OA\Response(response="500", description="Server error")
+ * )
+ */
+Flight::route('GET /users/doctors', function() {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::DOCTOR, Roles::PATIENT]);
+    $service = new AuthService();
+    Flight::json($service->getAllDoctors());
+});
+
 /**
  * @OA\Get(
  *     path="/users/{id}",
@@ -38,12 +54,10 @@ Flight::route('GET /users/@id', function($id) {
     $currentUser = Flight::get('user');
     $targetUser = (new AuthService())->getById($id);
     
-    // Users can view their own profile
     if ($currentUser['id'] == $id) {
         return Flight::json($targetUser);
     }
     
-    // Admin can view any profile
     if ($currentUser['role'] === Roles::ADMIN) {
         return Flight::json($targetUser);
     }
@@ -154,4 +168,4 @@ Flight::route('DELETE /users/@id', function($id) {
     $service = new AuthService();
     Flight::json($service->delete($id));
 });
-?>
+

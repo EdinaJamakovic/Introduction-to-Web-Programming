@@ -7,11 +7,12 @@
             <h1 class="w-75 darkBlueText">
                 Our team of dentists can help with a variety of dental services
             </h1>
-            <button class="btn btn-success" onclick="servicesService.openAddServiceModal()">+ Add Service</button>
+            <button id="addServiceBtn" class="btn btn-success" onclick="servicesService.openAddServiceModal()" style="display: none;">+ Add Service</button>
         </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-2 mb-5" id="servicesContainer">
+        <!-- services to be loaded dynamically -->
     </div>
 </div>
 
@@ -47,5 +48,42 @@
 </div>
 
 <script>
-    servicesService.loadServices();
+    document.addEventListener('DOMContentLoaded', function() {
+        servicesService.loadServices();
+        
+        const token = localStorage.getItem("user_token");
+        if (token) {
+            try {
+                const decodedToken = Utils.parseJwt(token);
+                const userRole = decodedToken.user?.role;
+                
+                if (userRole === Constants.DOCTOR_ROLE || userRole === Constants.ADMIN_ROLE) {
+                    document.getElementById('addServiceBtn').style.display = 'block';
+                }
+            } catch (e) {
+                console.error("Error parsing token:", e);
+            }
+        }
+    });
+
+    if (typeof servicesService !== 'undefined') {
+        servicesService.loadServices();
+        
+        const token = localStorage.getItem("user_token");
+        if (token) {
+            try {
+                const decodedToken = Utils.parseJwt(token);
+                const userRole = decodedToken.user?.role;
+                
+                if (userRole === Constants.DOCTOR_ROLE || userRole === Constants.ADMIN_ROLE) {
+                    const addBtn = document.getElementById('addServiceBtn');
+                    if (addBtn) {
+                        addBtn.style.display = 'block';
+                    }
+                }
+            } catch (e) {
+                console.error("Error parsing token:", e);
+            }
+        }
+    }
 </script>

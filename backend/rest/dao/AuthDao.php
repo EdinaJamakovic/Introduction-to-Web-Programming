@@ -18,6 +18,12 @@ class AuthDao extends BaseDao {
        $stmt->execute();
        return $stmt->fetch();
    }
+
+   public function getAllDoctors(){
+        $stmt = $this->connection->prepare("SELECT * FROM users WHERE role = 'doctor'");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>

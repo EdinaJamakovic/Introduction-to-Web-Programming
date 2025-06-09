@@ -51,7 +51,7 @@ Flight::route('GET /reviews/@id', function($id) {
  * )
  */
 Flight::route('GET /reviews/doctor/@id', function($id) {
-    Flight::auth_middleware()->authorizeRole(Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR);
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::PATIENT, Roles::DOCTOR]);
     $service = new ReviewService();
     Flight::json($service->getByDoctorId($id));
 });

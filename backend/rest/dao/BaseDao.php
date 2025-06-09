@@ -15,9 +15,6 @@ class BaseDao{
         $stmt->execute();
         $result = $stmt->fetchAll();
         
-        // Debug output
-        error_log("Table: " . $this->table); 
-        error_log("Rows found: " . count($result));
         return $result;
     }
     
@@ -54,5 +51,3 @@ class BaseDao{
        return $stmt->execute();
    }
 }
-
-?>

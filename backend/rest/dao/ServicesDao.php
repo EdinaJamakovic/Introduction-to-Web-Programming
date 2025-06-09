@@ -7,6 +7,3 @@ class ServicesDao extends BaseDao
         parent::__construct('services');
     }
 }
-
-
-?>

@@ -30,10 +30,8 @@
                 <form id="serviceSelectionForm">
                     <div class="form-group">
                         <label for="service">Choose Service</label>
-                        <select class="form-control" id="service">
-                            <option value="General Consultation">General Consultation</option>
-                            <option value="Specialist Visit">Specialist Visit</option>
-                            <option value="Routine Checkup">Routine Checkup</option>
+                        <select class="form-control" id="serviceOptions">
+                            <option value="" disabled selected>Loading services...</option>
                         </select>
                     </div>
                 </form>
@@ -47,5 +45,8 @@
 </div>
 
 <script>
-    dataTableService.loadAvailableAppointments();
+    $(document).ready(function(){
+        dataTableService.loadAvailableAppointments();
+        loadServicesIntoModal();
+    })
 </script>

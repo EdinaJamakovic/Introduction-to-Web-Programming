@@ -1,8 +1,8 @@
-$(document).ready(function(){
-    var app = $.spapp({
+$(document).ready(function() {
+    window.spApp = $.spapp({
         defaultView: '#landingPage',
         templateDir: './views/'
     });
 
-    app.run();
-})
+    spApp.run();
+});

@@ -1,20 +1,58 @@
 let passwordService = {
-
     changePassword: function() {
-        const currentPassword = document.getElementById('currentPassword').value.trim();
-        const newPassword = document.getElementById('newPassword').value.trim();
-        const confirmPassword = document.getElementById('confirmPassword').value.trim();
-        const patientId = document.getElementById('patientId').value.trim();
+        const token = profileService.getAuthToken();
+        if (!token) return;
 
-        const validationErrors = this.validatePasswords(currentPassword, newPassword, confirmPassword);
-        if (validationErrors.length > 0) {
-            alert(validationErrors.join('\n'));
-            return;
+        try {
+            const decodedToken = Utils.parseJwt(token);
+            const userId = decodedToken.user.id;
+
+            const currentPassword = $('#currentPassword').val().trim();
+            const newPassword = $('#newPassword').val().trim();
+            const confirmPassword = $('#confirmPassword').val().trim();
+
+            const validationErrors = this.validatePasswords(currentPassword, newPassword, confirmPassword);
+            if (validationErrors.length > 0) {
+                toastr.error(validationErrors.join('<br>'));
+                return;
+            }
+
+            const passwordData = {
+                current_password: currentPassword,
+                new_password: newPassword
+            };
+
+            $.ajax({
+                url: Constants.PROJECT_BASE_URL + `users/${userId}/password`,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(passwordData),
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+                },
+                success: function(response) {
+                    toastr.success('Password changed successfully');
+                    modalService.closeModal('changePasswordModal');
+                    
+                    $('#currentPassword').val('');
+                    $('#newPassword').val('');
+                    $('#confirmPassword').val('');
+                },
+                error: function(xhr) {
+                    console.error('Error changing password:', xhr.responseText);
+                    let errorMsg = 'Failed to change password';
+                    try {
+                        const errorResponse = JSON.parse(xhr.responseText);
+                        errorMsg = errorResponse.message || errorMsg;
+                    } catch (e) {
+                        
+                    }
+                    toastr.error(errorMsg);
+                }
+            });
+        } catch (e) {
+            console.error('Token parsing error:', e);
         }
-
-        const data = newPassword;
-
-        //this.updatePasswordOnServer(patientId, data);
     },
 
     validatePasswords: function(currentPassword, newPassword, confirmPassword) {
@@ -37,8 +75,10 @@ let passwordService = {
         }
 
         return errors;
-    },
-
-    updatePasswordOnServer: function(data) {
     }
 };
+
+$('#changePasswordForm').submit(function(e) {
+    e.preventDefault();
+    passwordService.changePassword();
+});

@@ -12,5 +12,4 @@ class UserDao extends BaseDao{
         return $stmt->fetchAll();
     }
 }
-
 ?>
