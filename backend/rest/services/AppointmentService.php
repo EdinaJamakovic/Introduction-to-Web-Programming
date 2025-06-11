@@ -10,7 +10,7 @@ class AppointmentService extends BaseService {
     }
 
     public function getByPatientId($id) {
-        if (!is_numeric($id) {
+        if (!is_numeric($id)) {
             throw new Exception("Patient ID must be numeric", 400);
         }
         return $this->dao->getByPatientId($id);

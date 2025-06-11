@@ -1,13 +1,10 @@
-/**
- * Doctor Appointment Service - Handles doctor-related UI and API interactions
- */
 let DoctorService = {
 
     createDoctorCard(doctor) {
         return `
             <div class="col">
                 <div class="card h-100 d-flex flex-column">
-                    <img class="card-img-top" src="˘${doctor.photo_url}" alt="${doctor.first_name} ${doctor.last_name}">
+                    <img class="card-img-top" src="${doctor.photo_url}" alt="${doctor.first_name} ${doctor.last_name}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Dr. ${doctor.first_name} ${doctor.last_name}</h5>
                         <p class="card-text"><strong>Specialization:</strong> ${doctor.specialization || 'General Dentistry'}</p>
@@ -63,7 +60,7 @@ let DoctorService = {
     
     //reveiews
     getDoctorReviews(doctorId) {
-        const token = this.getAuthToken();
+        const token = localStorage.getItem('user_token')
         
         $.ajax({
             url: Constants.PROJECT_BASE_URL + `reviews/doctor/${doctorId}`,

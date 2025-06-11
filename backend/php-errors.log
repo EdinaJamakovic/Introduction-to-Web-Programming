@@ -188,3 +188,10 @@ Stack trace:
 [08-Jun-2025 21:43:52 Europe/Berlin] Rows found: 14
 [08-Jun-2025 21:49:21 Europe/Berlin] Table: services
 [08-Jun-2025 21:49:21 Europe/Berlin] Rows found: 14
+[11-Jun-2025 09:05:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:07:20 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:07:40 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:11:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:14:14 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:14:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
+[11-Jun-2025 09:14:41 Europe/Berlin] PHP Parse error:  syntax error, unexpected token ";" in C:\xampp\htdocs\EdinaJamakovic\Introduction-to-Web-Programming\backend\rest\services\AppointmentService.php on line 14
